@@ -1,10 +1,12 @@
-import { LoginForm } from "./components/LoginForm";
+import { Toaster } from "sonner";
+import { ContactForm } from "./components/ContactForm";
 
 function App() {
   return (
-    <div className="min-h-screen flex items-center justify-center p-4 bg-gray-50">
-      <LoginForm />
-    </div>
+    <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
+      <ContactForm />
+      <Toaster position="top-center" />
+    </main>
   );
 }
 
