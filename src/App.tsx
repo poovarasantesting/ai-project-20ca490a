@@ -1,12 +1,25 @@
-import { Toaster } from "sonner";
-import { ContactForm } from "./components/ContactForm";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Toaster } from "@/components/ui/toaster";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import Calendar from "@/pages/Calendar";
+import EventForm from "@/pages/EventForm";
+import EventDetails from "@/pages/EventDetails";
+
+const queryClient = new QueryClient();
 
 function App() {
   return (
-    <main className="min-h-screen bg-gray-50 flex flex-col items-center justify-center p-4">
-      <ContactForm />
-      <Toaster position="top-center" />
-    </main>
+    <QueryClientProvider client={queryClient}>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Calendar />} />
+          <Route path="/event/new" element={<EventForm />} />
+          <Route path="/event/:id" element={<EventDetails />} />
+          <Route path="/event/:id/edit" element={<EventForm />} />
+        </Routes>
+        <Toaster />
+      </BrowserRouter>
+    </QueryClientProvider>
   );
 }
 
